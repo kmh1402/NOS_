@@ -12,6 +12,7 @@
 #include "Dlg_PW.h"
 #include "Dlg_Init.h"
 #include "Dlg_Calc.h"
+#include "Dlg_Motion.h"
 
 // CFrm_Main
 IMPLEMENT_DYNCREATE(CFrm_Main, CFormView)
@@ -128,6 +129,7 @@ void CFrm_Main::ClickStartBtn()
 
 	gNOS.bStart = true;
 	gNOS.bStop = false;
+	SpeedSetting();
 }
 
 void CFrm_Main::ClickStopBtn()
@@ -190,6 +192,6 @@ void CFrm_Main::MainTime()
 void CFrm_Main::ClickMotionBtn()
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
-	CDlg_Calc	Dlg;
+	CDlg_Motion Dlg;
 	Dlg.DoModal();
 }

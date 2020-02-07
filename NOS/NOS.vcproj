@@ -217,6 +217,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Dlg_Motion.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Dlg_PW.cpp"
 					>
 				</File>
@@ -351,6 +355,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Dlg_Motion.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Dlg_PW.h"
 					>
 				</File>
@@ -482,6 +490,10 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<File
+				RelativePath=".\res\icon1.ico"
+				>
+			</File>
+			<File
 				RelativePath=".\res\NOS.ico"
 				>
 			</File>
@@ -511,6 +523,10 @@
 		<Global
 			Name="RESOURCE_FILE"
 			Value="NOS.rc"
+		/>
+		<Global
+			Name="{40B5CE81-C5A8-11D2-8183-00002440DFD8}"
+			Value="CBtnEnh"
 		/>
 	</Globals>
 </VisualStudioProject>

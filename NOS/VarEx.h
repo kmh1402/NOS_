@@ -38,6 +38,8 @@ struct    MotorBaseData {
 		  long lX1;
 		  long lY1;
 		  long lZ1;
+		  long lX2;
+		  long lY2;
 } ;
 extern	MotorBaseData   SpeedFH ;	// 각 모터마다 High Speed일때 FH값 
 extern	MotorBaseData   SpeedAcc ;  //각모터마다 High Speed일때 Acc값

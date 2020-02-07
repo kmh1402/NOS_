@@ -2,7 +2,10 @@
 #define FAIL			-1
 
 #include "share.h"
+#include "pmiMApi.h"
+#include "pmiMApiDefs.h"
 
+#include "Run_Main.h"
 //#include "Cmmsdk.h"
 #include <math.h>
 
@@ -46,6 +49,10 @@ void SpeedSetting()
 	cmmCfgSetSpeedPattern(M_Z1, cmSMODE_S, SpeedFH.lZ1, SpeedAcc.lZ1, SpeedAcc.lZ1);
 	cmmCfgSetSpeedPattern(M_T1, cmSMODE_S, SpeedFH.lT1, SpeedAcc.lT1, SpeedAcc.lT1);
 	*/
+	pmiAxSetVelProf( 0, M_X1, 2, double(SpeedFH.lX1), double(SpeedAcc.lX1), double(SpeedAcc.lX1) );	
+	pmiAxSetVelProf( 0, M_Y1, 2, double(SpeedFH.lY1), double(SpeedAcc.lY1), double(SpeedAcc.lY1) );	
+	pmiAxSetVelProf( 0, M_Z1, 2, double(SpeedFH.lZ1), double(SpeedAcc.lZ1), double(SpeedAcc.lZ1) );	
+	
 }
 
 void MotorStop()
