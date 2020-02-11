@@ -217,11 +217,27 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Dlg_Model.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\Dlg_Motion.cpp"
 					>
 				</File>
 				<File
 					RelativePath=".\Dlg_PW.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Dlg_Skip.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Dlg_Skip2.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\Dlg_Skip3.cpp"
 					>
 				</File>
 			</Filter>
@@ -355,11 +371,27 @@
 					>
 				</File>
 				<File
+					RelativePath=".\Dlg_Model.h"
+					>
+				</File>
+				<File
 					RelativePath=".\Dlg_Motion.h"
 					>
 				</File>
 				<File
 					RelativePath=".\Dlg_PW.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Dlg_Skip.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Dlg_Skip2.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Dlg_Skip3.h"
 					>
 				</File>
 			</Filter>

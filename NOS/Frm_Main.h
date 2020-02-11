@@ -44,6 +44,24 @@ public:
 	void DataDisplay();
 	void MainTime();
 	void ClickMotionBtn();
+	void DblClickModelName();
+	int m_nOldJigSel;
+	CString m_csOldModel;
+	CBtnEnh m_Model_Name;
+	void ClickJig1();
+	void ClickJig2();
+	void ClickJig6();
+	CBtnEnh m_Jig1;
+	CBtnEnh m_Jig2;
+	CBtnEnh m_Jig3;
+	void ClickJig3();
+	void ClickJig4();
+	void ClickJig5();
+	void DataLoadSetCaption();
+	void Rect1(CDC* pDC, int nSite);
+	int m_nSite;
+	void FillBitmapInfo(BITMAPINFO* bmi, int width, int height, int bpp, int origin);
+	void FillBitmapInfo2(BITMAPINFO* bmi, int width, int height, int bpp, int origin);
 };
 
 

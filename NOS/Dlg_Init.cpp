@@ -136,7 +136,7 @@ void CDlg_Init::OnTimer(UINT_PTR nIDEvent)
 		m_Percent.SetCaption(csData);
 		m_Progress.SetPos(nI);
 	}
-	
+	MotionDataLoad();
 	m_Message.SetCaption("Motion Data Load");
 	for(nI = 70; nI < 80 ; nI++)
 	{
@@ -205,6 +205,46 @@ void CDlg_Init::DataInit()
 	pmiAxSetServoOn(0,M_X1,1);
 	pmiAxSetServoOn(0,M_Y1,1);
 	pmiAxSetServoOn(0,M_Z1,1);
+	//폴더생성
+	CString csFileName,csCreateName;
+	CString csYear,csMonth, csDay;
+	CString csData;
+
+	GetCurDay(&csYear, &csMonth, &csDay);
+	csFileName = GetRunDirectory();
+
+	csCreateName = csFileName + "\\Setting\\";
+	DirectoryCreate(csCreateName);
+
+	csCreateName = csFileName + "\\Data\\";
+	DirectoryCreate(csCreateName);
+
+	csCreateName = "C:\\Data\\";
+	DirectoryCreate(csCreateName);
+
+
+	csCreateName = csCreateName + csYear + "\\";
+	DirectoryCreate(csCreateName);
+
+	csCreateName = csCreateName + csMonth + "\\";
+	DirectoryCreate(csCreateName);
+
+	csCreateName = csCreateName + csDay + "\\";
+	DirectoryCreate(csCreateName);
+
+	//gcsCSVFileName = csCreateName;
+
+	csCreateName = csFileName + "\\Log\\";
+	DirectoryCreate(csCreateName);
+
+	csCreateName = csCreateName + csYear + "\\";
+	DirectoryCreate(csCreateName);
+
+	csCreateName = csCreateName + csMonth + "\\";
+	DirectoryCreate(csCreateName);
+
+	csCreateName = csCreateName + csDay + "\\";
+	DirectoryCreate(csCreateName);
 }
 
 void CDlg_Init::InitMotionDevices()

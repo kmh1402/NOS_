@@ -34,7 +34,7 @@ extern double gdCal_Y;
 
 ///////////////////////////////////MOTION 관련/////////////////////////////////////
 
-struct    MotorBaseData {
+struct    MotorBaseData {	
 		  long lX1;
 		  long lY1;
 		  long lZ1;
@@ -48,13 +48,33 @@ extern	MotorBaseData   SpeedHome ;  //각모터마다 High Speed일때 Dec값
 extern	MotorBaseData   SpeedJog ;  //각모터마다 High Speed일때 Dec값
 
 extern bool gbOriginStart;
+extern int gnSkip[10][10];
+extern int gnSkip2[10][10];
+extern int gnSkip3[10][10];
+extern int gnJigXCnt;
+extern int gnJigYCnt;
+extern int gnLensStatus[10][10];
+extern int gnLensStatusOld[10][10];
 
 struct POSITIONDATA	{
-		long lRdy_X;
-		long lRdy_Y;
-		long lRdy_Z;
+		long lRdyX;
+		long lRdyY;
+		long lRdyZ;
 		long lRdy_T1;
-		long lInter_Z;
+		long lInterZ;
+		long lX1;
+		long lY1;
+		long lX2;
+		long lY2;
+		long lX3;
+		long lY3;
+		long lX4;
+		long lY4;
+		long lUpPos;
+		long lUpPos2;
+		long lUpPos3;
+		long lUpPos4;
+		long lDownPos;
 };
 extern POSITIONDATA	gTeach;
 
@@ -74,9 +94,10 @@ extern int gnJogSpeed;
 extern bool gbSameProjectStart;
 extern long glJogSpeed;
 extern CString	gcsNewPW;
+extern CString gcsModelName;
 extern bool gbPWFail; 
 extern long glJogPos;
-
+extern int gnJigSel;
 //////////////////////////////////////기타설정///////////////////////////////
 extern int gnXCnt;
 extern int gnYCnt;

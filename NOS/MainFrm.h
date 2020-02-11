@@ -42,6 +42,9 @@ protected:
 public:
 	afx_msg void OnMenuMain();
 	afx_msg void OnUpdateMenuMain(CCmdUI *pCmdUI);
+	afx_msg void OnVisionSkip();
+	afx_msg void OnVisionSkip2();
+	afx_msg void OnVisionSkip3();
 };
 
 

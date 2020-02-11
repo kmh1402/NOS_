@@ -27,6 +27,9 @@
 #define JOGMID									1
 #define JOGHIGH									2
 
+#define UNIT_OUT								0
+#define UNIT_IN									1
+
 /////////////////////////////////////////VISION DEFINE/////////////////////////////////////////////////
 #define LIMIT_PLUS_LIGHT						0
 #define LIMIT_SUB_LIGHT							1
@@ -40,3 +43,11 @@
 
 ///////////////////////////////////////SEQUENCE DEFINE/////////////////////////////////////////////////
 
+
+//ETC
+#define LENSNG						0
+#define LENSGOOD					1
+#define LENSSORT					2
+#define LENSB						3
+#define LENS_SPOT					4
+#define LENS_VINET					5

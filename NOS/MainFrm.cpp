@@ -6,6 +6,9 @@
 #include "MainFrm.h"
 #include "MenuHead.h"
 #include "VarEx.h"
+#include "Dlg_Skip.h"
+#include "Dlg_Skip2.h"
+#include "Dlg_Skip3.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -71,6 +74,36 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	SetMenu(NULL);
 	return 0;
 }
+
+void CMainFrame::OnVisionSkip()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+
+	CDlg_Skip		*dlg = new CDlg_Skip;//동적으로 생성해준다
+	dlg -> Create(IDD_DLG_SKIP,NULL);//모달리스는 반드시 Create로 띄워야한다. 
+	dlg ->ShowWindow(SW_SHOW);
+
+}
+void CMainFrame::OnVisionSkip2()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+
+	CDlg_Skip		*dlg = new CDlg_Skip;//동적으로 생성해준다
+	dlg -> Create(IDD_DLG_SKIP2,NULL);//모달리스는 반드시 Create로 띄워야한다. 
+	dlg ->ShowWindow(SW_SHOW);
+
+}
+
+void CMainFrame::OnVisionSkip3()
+{
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+
+	CDlg_Skip		*dlg = new CDlg_Skip;//동적으로 생성해준다
+	dlg -> Create(IDD_DLG_SKIP3,NULL);//모달리스는 반드시 Create로 띄워야한다. 
+	dlg ->ShowWindow(SW_SHOW);
+
+}
+
 
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {

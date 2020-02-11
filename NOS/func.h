@@ -6,7 +6,6 @@
 #include "pmiMApiDefs.h"
 
 #include "Run_Main.h"
-//#include "Cmmsdk.h"
 #include <math.h>
 
 CString GetRunDirectory()
@@ -266,16 +265,137 @@ void MotionDataLoad()
 	CString csData;
 	
 	char MData[20];//불러올변수저장공간및 확보
-	
+	char MRData[50];//불러올변수저장공간및 확보
 	csFileName = GetRunDirectory();
 	csFileName = csFileName + "\\";
 	csFileName = csFileName + "Setting\\";
-	csFileName = csFileName + "\\MotionData.txt" ;
-	
-	//GetPrivateProfileString("TEACH", "RDY X", "Default", MData, 20, csFileName);
-	//gTeach.lRdy_X = atol(MData) ;
+	csFileName = csFileName + "\\MotionData.dat" ;
 
+ 	csFileName = "d:\\NOS\\NOS";
+ 	csFileName = csFileName + "\\Model.txt" ;
+
+ 	GetPrivateProfileString("MODEL", "NAME", "Default", MRData, 50, csFileName);
+ 	gcsModelName = MRData;
+
+
+// 	csFileName = "d:\\NOS\\NOS";
+// 	csFileName = csFileName + "\\Setting\\";
+// 	csFileName = csFileName + gcsModelName;
+// 	csFileName = csFileName + ".txt" ;
 	
+	GetPrivateProfileString("TEACH", "RDY X", "Default", MData, 20, csFileName);
+	gTeach.lRdyX = atol(MData) ;
+
+	GetPrivateProfileString("TEACH", "RDY Y", "Default", MData, 20, csFileName);
+	gTeach.lRdyY = atol(MData) ;
+
+	GetPrivateProfileString("TEACH", "RDY Z", "Default", MData, 20, csFileName);
+	gTeach.lRdyZ = atol(MData) ;
+
+	GetPrivateProfileString("SPEED", "X MOVE", "Default", MData, 20, csFileName);
+	SpeedFH.lX1 = atol(MData) ;
+
+	GetPrivateProfileString("SPEED", "X ACCDEC", "Default", MData, 20, csFileName);
+	SpeedAcc.lX1 = atol(MData) ;
+
+	GetPrivateProfileString("SPEED", "X HOME", "Default", MData, 20, csFileName);
+	SpeedHome.lX1 = atol(MData) ;
+
+	GetPrivateProfileString("SPEED", "X JOG", "Default", MData, 20, csFileName);
+	SpeedJog.lX1 = atol(MData) ;
+
+	GetPrivateProfileString("SPEED", "Y MOVE", "Default", MData, 20, csFileName);
+	SpeedFH.lY1 = atol(MData) ;
+
+	GetPrivateProfileString("SPEED", "Y ACCDEC", "Default", MData, 20, csFileName);
+	SpeedAcc.lY1 = atol(MData) ;
+
+	GetPrivateProfileString("SPEED", "Y HOME", "Default", MData, 20, csFileName);
+	SpeedHome.lY1 = atol(MData) ;
+
+	GetPrivateProfileString("SPEED", "Y JOG", "Default", MData, 20, csFileName);
+	SpeedJog.lY1 = atol(MData) ;
+
+	GetPrivateProfileString("SPEED", "X MOVE2", "Default", MData, 20, csFileName);
+	SpeedFH.lX2 = atol(MData) ;
+
+	GetPrivateProfileString("SPEED", "X ACCDEC2", "Default", MData, 20, csFileName);
+	SpeedAcc.lX2 = atol(MData) ;
+
+	GetPrivateProfileString("SPEED", "Y MOVE2", "Default", MData, 20, csFileName);
+	SpeedFH.lY2 = atol(MData) ;
+
+	GetPrivateProfileString("SPEED", "Y ACCDEC2", "Default", MData, 20, csFileName);
+	SpeedAcc.lY2 = atol(MData) ;
+
+	GetPrivateProfileString("SPEED", "Z MOVE", "Default", MData, 20, csFileName);
+	SpeedFH.lZ1 = atol(MData) ;
+
+	GetPrivateProfileString("SPEED", "Z ACC", "Default", MData, 20, csFileName);
+	SpeedAcc.lZ1 = atol(MData) ;
+
+	GetPrivateProfileString("SPEED", "Z HOME", "Default", MData, 20, csFileName);
+	SpeedHome.lZ1 = atol(MData) ;
+
+	GetPrivateProfileString("SPEED", "Z JOG", "Default", MData, 20, csFileName);
+	SpeedJog.lZ1 = atol(MData) ;
+
+	GetPrivateProfileString("TEACH", "UP POS Z", "Default", MData, 20, csFileName);
+	gTeach.lUpPos = atol(MData) ;
+
+	GetPrivateProfileString("TEACH", "UP POS Z2", "Default", MData, 20, csFileName);
+	gTeach.lUpPos2 = atol(MData) ;
+
+	GetPrivateProfileString("TEACH", "UP POS Z3", "Default", MData, 20, csFileName);
+	gTeach.lUpPos3 = atol(MData) ;
+
+	GetPrivateProfileString("TEACH", "UP POS Z4", "Default", MData, 20, csFileName);
+	gTeach.lUpPos4 = atol(MData) ;
+
+	GetPrivateProfileString("TEACH", "DOWN POS Z", "Default", MData, 20, csFileName);
+	gTeach.lDownPos = atol(MData) ;
+
+	GetPrivateProfileString("TEACH", "POS X1", "Default", MData, 20, csFileName);
+	gTeach.lX1 = atol(MData) ;
+
+	GetPrivateProfileString("TEACH", "POS X2", "Default", MData, 20, csFileName);
+	gTeach.lX2 = atol(MData) ;
+
+	GetPrivateProfileString("TEACH", "POS X3", "Default", MData, 20, csFileName);
+	gTeach.lX3 = atol(MData) ;
+
+	GetPrivateProfileString("TEACH", "POS X4", "Default", MData, 20, csFileName);
+	gTeach.lX4 = atol(MData) ;
+	GetPrivateProfileString("TEACH", "POS Y1", "Default", MData, 20, csFileName);
+	gTeach.lY1 = atol(MData) ;
+
+	GetPrivateProfileString("TEACH", "POS Y2", "Default", MData, 20, csFileName);
+	gTeach.lY2 = atol(MData) ;
+
+	GetPrivateProfileString("TEACH", "POS Y3", "Default", MData, 20, csFileName);
+	gTeach.lY3 = atol(MData) ;
+
+	GetPrivateProfileString("TEACH", "POS Y4", "Default", MData, 20, csFileName);
+	gTeach.lY4 = atol(MData) ;
+	
+	GetPrivateProfileString("TEACH", "INTERLOCK Z", "Default", MData, 20, csFileName);
+	gTeach.lInterZ = atol(MData) ;
+
+	for(int nY = 0; nY < 10; nY++)
+	{
+		for(int nX = 0; nX < 10; nX++)
+		{
+			csData.Format("X%d Y%d", nX, nY);
+			GetPrivateProfileString("SKIP", csData, "Default", MData, 20, csFileName);
+			gnSkip[nX][nY] = atol(MData) ;
+
+			GetPrivateProfileString("SKIP2", csData, "Default", MData, 20, csFileName);
+			gnSkip2[nX][nY] = atol(MData) ;
+
+			GetPrivateProfileString("SKIP3", csData, "Default", MData, 20, csFileName);
+			gnSkip3[nX][nY] = atol(MData) ;
+		}
+	}
 }
 
 void FileDelete1(CString csEQNum, CString csFileName)

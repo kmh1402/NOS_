@@ -39,9 +39,7 @@ void CDlg_Motion::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_Z_ORG, m_Z_Org);
 	DDX_Control(pDX, IDC_X_ALARM, m_X_Alarm);
 	DDX_Control(pDX, IDC_Y_ALARM, m_Y_Alarm);
-	// 	DDX_Control(pDX, IDC_X_FEED, m_X_Feed);
-	// 	DDX_Control(pDX, IDC_Y_FEED, m_Y_Feed);
-	// 	DDX_Control(pDX, IDC_Z_FEED, m_Z_Feed);
+
 	DDX_Control(pDX, IDC_JOG_LOW, m_Jog_Low);
 	DDX_Control(pDX, IDC_JOG_MID, m_Jog_Mid);
 	DDX_Control(pDX, IDC_JOG_HIGH, m_Jog_High);
@@ -67,6 +65,26 @@ void CDlg_Motion::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_X_ACCDEC2, m_X_AccDec2);
 	DDX_Control(pDX, IDC_Y_MOVE_SPEED2, m_Y_Move_Speed2);
 	DDX_Control(pDX, IDC_Y_ACCDEC2, m_Y_AccDec2);
+	DDX_Control(pDX, IDC_RDY_X, m_Rdy_X);
+	DDX_Control(pDX, IDC_RDY_Y, m_Rdy_Y);
+	DDX_Control(pDX, IDC_RDY_Z, m_Rdy_Z);
+	DDX_Control(pDX, IDC_POS_Z_DW, m_Pos_Z_DW);
+	DDX_Control(pDX, IDC_X_POS1, m_X_Pos1);
+	DDX_Control(pDX, IDC_Y_POS1, m_Y_Pos1);
+	DDX_Control(pDX, IDC_POS_Z_UP, m_Pos_Z_UP);
+	DDX_Control(pDX, IDC_X_POS2, m_X_Pos2);
+	DDX_Control(pDX, IDC_Y_POS2, m_Y_Pos2);
+	DDX_Control(pDX, IDC_POS_Z_UP2, m_Pos_Z_UP2);
+	DDX_Control(pDX, IDC_X_POS3, m_X_Pos3);
+	DDX_Control(pDX, IDC_Y_POS3, m_Y_Pos3);
+	DDX_Control(pDX, IDC_POS_Z_UP3, m_Pos_Z_UP3);
+	DDX_Control(pDX, IDC_X_POS4, m_X_Pos4);
+	DDX_Control(pDX, IDC_Y_POS4, m_Y_Pos4);
+	DDX_Control(pDX, IDC_POS_Z_UP4, m_Pos_Z_UP4);
+	DDX_Control(pDX, IDC_INTER_Z, m_Inter_Z);
+	DDX_Control(pDX, IDC_X_MOVEPOS, m_X_MovePos);
+	DDX_Control(pDX, IDC_Y_MOVEPOS, m_Y_MovePos);
+	DDX_Control(pDX, IDC_Z_MOVEPOS, m_Z_MovePos);
 }
 
 
@@ -101,27 +119,91 @@ BEGIN_EVENTSINK_MAP(CDlg_Motion, CDialog)
 	ON_EVENT(CDlg_Motion, IDC_X_ACCDEC2, DISPID_DBLCLICK, CDlg_Motion::DblClickXAccdec2, VTS_NONE)
 	ON_EVENT(CDlg_Motion, IDC_Y_MOVE_SPEED2, DISPID_DBLCLICK, CDlg_Motion::DblClickYMoveSpeed2, VTS_NONE)
 	ON_EVENT(CDlg_Motion, IDC_Y_ACCDEC2, DISPID_DBLCLICK, CDlg_Motion::DblClickYAccdec2, VTS_NONE)
-
-
+	ON_EVENT(CDlg_Motion, IDC_Z_HOME_SPEED, DISPID_DBLCLICK, CDlg_Motion::DblClickZHomeSpeed, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_Z_JOG_SPEED, DISPID_DBLCLICK, CDlg_Motion::DblClickZJogSpeed, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_JOG_Y_UP, DISPID_MOUSEDOWN, CDlg_Motion::MouseDownJogYUp, VTS_I2 VTS_I2 VTS_I4 VTS_I4)
+	ON_EVENT(CDlg_Motion, IDC_JOG_Y_UP, DISPID_MOUSEUP, CDlg_Motion::MouseUpJogYUp, VTS_I2 VTS_I2 VTS_I4 VTS_I4)
+	ON_EVENT(CDlg_Motion, IDC_JOG_LEFT, DISPID_MOUSEDOWN, CDlg_Motion::MouseDownJogLeft, VTS_I2 VTS_I2 VTS_I4 VTS_I4)
+	ON_EVENT(CDlg_Motion, IDC_JOG_LEFT, DISPID_MOUSEUP, CDlg_Motion::MouseUpJogLeft, VTS_I2 VTS_I2 VTS_I4 VTS_I4)
+	ON_EVENT(CDlg_Motion, IDC_JOG_DOWN, DISPID_MOUSEDOWN, CDlg_Motion::MouseDownJogDown, VTS_I2 VTS_I2 VTS_I4 VTS_I4)
+	ON_EVENT(CDlg_Motion, IDC_JOG_DOWN, DISPID_MOUSEUP, CDlg_Motion::MouseUpJogDown, VTS_I2 VTS_I2 VTS_I4 VTS_I4)
+	ON_EVENT(CDlg_Motion, IDC_JOG_RIGHT, DISPID_MOUSEDOWN, CDlg_Motion::MouseDownJogRight, VTS_I2 VTS_I2 VTS_I4 VTS_I4)
+	ON_EVENT(CDlg_Motion, IDC_JOG_Z_UP, DISPID_MOUSEDOWN, CDlg_Motion::MouseDownJogZUp, VTS_I2 VTS_I2 VTS_I4 VTS_I4)
+	ON_EVENT(CDlg_Motion, IDC_JOG_Z_UP, DISPID_MOUSEUP, CDlg_Motion::MouseUpJogZUp, VTS_I2 VTS_I2 VTS_I4 VTS_I4)
+	ON_EVENT(CDlg_Motion, IDC_RDY_X, DISPID_DBLCLICK, CDlg_Motion::DblClickRdyX, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_RDY_Y, DISPID_DBLCLICK, CDlg_Motion::DblClickRdyY, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_RDY_Z, DISPID_DBLCLICK, CDlg_Motion::DblClickRdyZ, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_RDY_X_MOVE, DISPID_CLICK, CDlg_Motion::ClickRdyXMove, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_RDY_Y_MOVE, DISPID_CLICK, CDlg_Motion::ClickRdyYMove, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_RDY_Z_MOVE, DISPID_CLICK, CDlg_Motion::ClickRdyZMove, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_POS_Z_DW, DISPID_DBLCLICK, CDlg_Motion::DblClickPosZDw, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_POS_Z_DW_MOVE, DISPID_CLICK, CDlg_Motion::ClickPosZDwMove, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_RDY_X_SET, DISPID_CLICK, CDlg_Motion::ClickRdyXSet, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_RDY_Y_SET, DISPID_CLICK, CDlg_Motion::ClickRdyYSet, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_RDY_Z_SET, DISPID_CLICK, CDlg_Motion::ClickRdyZSet, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_POS_Z_DW_SET, DISPID_CLICK, CDlg_Motion::ClickPosZDwSet, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_X_POS1, DISPID_DBLCLICK, CDlg_Motion::DblClickXPos1, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_Y_POS1, DISPID_DBLCLICK, CDlg_Motion::DblClickYPos1, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_POS_Z_UP, DISPID_DBLCLICK, CDlg_Motion::DblClickPosZUp, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_X_POS2, DISPID_DBLCLICK, CDlg_Motion::DblClickXPos2, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_Y_POS2, DISPID_DBLCLICK, CDlg_Motion::DblClickYPos2, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_POS_Z_UP2, DISPID_DBLCLICK, CDlg_Motion::DblClickPosZUp2, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_X_POS3, DISPID_DBLCLICK, CDlg_Motion::DblClickXPos3, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_Y_POS3, DISPID_DBLCLICK, CDlg_Motion::DblClickYPos3, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_POS_Z_UP3, DISPID_DBLCLICK, CDlg_Motion::DblClickPosZUp3, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_X_POS4, DISPID_DBLCLICK, CDlg_Motion::DblClickXPos4, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_Y_POS4, DISPID_DBLCLICK, CDlg_Motion::DblClickYPos4, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_POS_Z_UP4, DISPID_DBLCLICK, CDlg_Motion::DblClickPosZUp4, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_INTER_Z, DISPID_DBLCLICK, CDlg_Motion::DblClickInterZ, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_X_POS1_MOVE, DISPID_CLICK, CDlg_Motion::ClickXPos1Move, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_Y_POS1_MOVE, DISPID_CLICK, CDlg_Motion::ClickYPos1Move, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_POS_Z_MOVE, DISPID_CLICK, CDlg_Motion::ClickPosZMove, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_X_POS2_MOVE, DISPID_CLICK, CDlg_Motion::ClickXPos2Move, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_Y_POS2_MOVE, DISPID_CLICK, CDlg_Motion::ClickYPos2Move, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_POS_Z_MOVE2, DISPID_CLICK, CDlg_Motion::ClickPosZMove2, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_X_POS3_MOVE, DISPID_CLICK, CDlg_Motion::ClickXPos3Move, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_Y_POS3_MOVE, DISPID_CLICK, CDlg_Motion::ClickYPos3Move, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_POS_Z_MOVE3, DISPID_CLICK, CDlg_Motion::ClickPosZMove3, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_X_POS4_MOVE, DISPID_CLICK, CDlg_Motion::ClickXPos4Move, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_Y_POS4_MOVE, DISPID_CLICK, CDlg_Motion::ClickYPos4Move, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_POS_Z_MOVE4, DISPID_CLICK, CDlg_Motion::ClickPosZMove4, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_POS_Z_DW_MOVE2, DISPID_CLICK, CDlg_Motion::ClickPosZDwMove2, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_X_POS1_SET, DISPID_CLICK, CDlg_Motion::ClickXPos1Set, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_Y_POS1_SET, DISPID_CLICK, CDlg_Motion::ClickYPos1Set, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_POS_Z_UP_SET, DISPID_CLICK, CDlg_Motion::ClickPosZUpSet, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_X_POS2_SET, DISPID_CLICK, CDlg_Motion::ClickXPos2Set, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_Y_POS2_SET, DISPID_CLICK, CDlg_Motion::ClickYPos2Set, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_POS_Z_UP_SET2, DISPID_CLICK, CDlg_Motion::ClickPosZUpSet2, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_X_POS3_SET, DISPID_CLICK, CDlg_Motion::ClickXPos3Set, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_Y_POS3_SET, DISPID_CLICK, CDlg_Motion::ClickYPos3Set, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_POS_Z_UP_SET3, DISPID_CLICK, CDlg_Motion::ClickPosZUpSet3, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_X_POS4_SET, DISPID_CLICK, CDlg_Motion::ClickXPos4Set, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_Y_POS4_SET, DISPID_CLICK, CDlg_Motion::ClickYPos4Set, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_POS_Z_UP_SET4, DISPID_CLICK, CDlg_Motion::ClickPosZUpSet4, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_POS_Z_DW_SET2, DISPID_CLICK, CDlg_Motion::ClickPosZDwSet2, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_X_MOVEPOS, DISPID_DBLCLICK, CDlg_Motion::DblClickXMovepos, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_Y_MOVEPOS, DISPID_DBLCLICK, CDlg_Motion::DblClickYMovepos, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_Z_MOVEPOS, DISPID_DBLCLICK, CDlg_Motion::DblClickZMovepos, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_X_MOVE, DISPID_CLICK, CDlg_Motion::ClickXMove, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_Y_MOVE, DISPID_CLICK, CDlg_Motion::ClickYMove, VTS_NONE)
+	ON_EVENT(CDlg_Motion, IDC_Z_MOVE, DISPID_CLICK, CDlg_Motion::ClickZMove, VTS_NONE)
 END_EVENTSINK_MAP()
+
+void CDlg_Motion::OnTimer(UINT_PTR nIDEvent)
+{
+	if(nIDEvent == 1)
+	{
+		GetMotionStatus();
+	}
+	if(nIDEvent == 2)
+	{
+		Display();
+	}
+	CDialog::OnTimer(nIDEvent);
+}
 
 void CDlg_Motion::GetMotionStatus()
 {
-// 	long dwMIOState;
-// 	BOOL bELPState;
-// 	BOOL bELMState;
-// 	BOOL bAMPState;
-// 	BOOL bORGState;
-// 	BOOL bINPState;
-// 	CString csData;
-// 	double dPos;
-// 
-// 	cmmStReadMioStatuses(M_X1, &dwMIOState);
-// 	bELPState = (dwMIOState >> cmIOST_ELP) & 0x1;
-// 	bELMState = (dwMIOState >> cmIOST_ELN) & 0x1;
-// 	bAMPState = (dwMIOState >> cmIOST_ALM) & 0x1;
-// 	bORGState = (dwMIOState >> cmIOST_ORG) & 0x1;
-// 	bINPState = (dwMIOState >> cmIOST_INP) & 0x1;
 
 	union {
 		unsigned int mem;
@@ -219,10 +301,6 @@ void CDlg_Motion::GetMotionStatus()
 	pmiAxGetActPos(0,M_X1, &dPos);
 	csData.Format("%.f", dPos);
 	m_X_FeedBack.SetCaption(csData);
-
-
-
-
 
 
 	pmiAxGetMechanical(0,M_Y1, &udtCardStatus.mem);
@@ -413,6 +491,16 @@ void CDlg_Motion::DataSave()
 	csRet.Format("%d",SpeedJog.lY1); 
 	WritePrivateProfileString("SPEED", "Y JOG", csRet, csFileName);
 
+	csData = m_Z_FH.GetCaption();
+	SpeedFH.lZ1 = atol(csData) ;
+	csRet.Format("%d",SpeedFH.lZ1); 
+	WritePrivateProfileString("SPEED", "Z MOVE", csRet, csFileName);
+
+	csData = m_Z_Acc.GetCaption();
+	SpeedAcc.lZ1 = atol(csData) ;
+	csRet.Format("%d",SpeedAcc.lZ1); 
+	WritePrivateProfileString("SPEED", "Z ACC", csRet, csFileName);
+
 	csData = m_Z_Home_Speed.GetCaption();
 	SpeedHome.lZ1 = atol(csData) ;
 	csRet.Format("%d",SpeedHome.lZ1); 
@@ -445,6 +533,91 @@ void CDlg_Motion::DataSave()
 	WritePrivateProfileString("SPEED", "Y ACCDEC2", csRet, csFileName);
 	SpeedSetting();
 
+	csData = m_Rdy_X.GetCaption();
+	gTeach.lRdyX = atol(csData) ;
+	csRet.Format("%d", gTeach.lRdyX); 
+	WritePrivateProfileString("TEACH", "RDY X", csRet, csFileName);
+
+	csData = m_Rdy_Y.GetCaption();
+	gTeach.lRdyY = atol(csData) ;
+	csRet.Format("%d", gTeach.lRdyY); 
+	WritePrivateProfileString("TEACH", "RDY Y", csRet, csFileName);
+
+	csData = m_Rdy_Z.GetCaption();
+	gTeach.lRdyZ = atol(csData) ;
+	csRet.Format("%d", gTeach.lRdyZ); 
+	WritePrivateProfileString("TEACH", "RDY Z", csRet, csFileName);
+
+	csData = m_Pos_Z_UP.GetCaption();
+	gTeach.lUpPos = atol(csData) ;
+	csRet.Format("%d", gTeach.lUpPos); 
+	WritePrivateProfileString("TEACH", "UP POS Z", csRet, csFileName);
+
+	csData = m_Pos_Z_UP2.GetCaption();
+	gTeach.lUpPos2 = atol(csData) ;
+	csRet.Format("%d", gTeach.lUpPos2); 
+	WritePrivateProfileString("TEACH", "UP POS Z2", csRet, csFileName);
+
+	csData = m_Pos_Z_UP3.GetCaption();
+	gTeach.lUpPos3 = atol(csData) ;
+	csRet.Format("%d", gTeach.lUpPos3); 
+	WritePrivateProfileString("TEACH", "UP POS Z3", csRet, csFileName);
+
+	csData = m_Pos_Z_UP4.GetCaption();
+	gTeach.lUpPos4 = atol(csData) ;
+	csRet.Format("%d", gTeach.lUpPos4); 
+	WritePrivateProfileString("TEACH", "UP POS Z4", csRet, csFileName);
+
+	csData = m_Pos_Z_DW.GetCaption();
+	gTeach.lDownPos = atol(csData) ;
+	csRet.Format("%d", gTeach.lDownPos); 
+	WritePrivateProfileString("TEACH", "DOWN POS Z", csRet, csFileName);
+
+
+	csData = m_X_Pos1.GetCaption();
+	gTeach.lX1 = atol(csData) ;
+	csRet.Format("%d", gTeach.lX1); 
+	WritePrivateProfileString("TEACH", "POS X1", csRet, csFileName);
+
+	csData = m_X_Pos2.GetCaption();
+	gTeach.lX2 = atol(csData) ;
+	csRet.Format("%d", gTeach.lX2); 
+	WritePrivateProfileString("TEACH", "POS X2", csRet, csFileName);
+
+	csData = m_X_Pos3.GetCaption();
+	gTeach.lX3 = atol(csData) ;
+	csRet.Format("%d", gTeach.lX3); 
+	WritePrivateProfileString("TEACH", "POS X3", csRet, csFileName);
+
+	csData = m_X_Pos4.GetCaption();
+	gTeach.lX4 = atol(csData) ;
+	csRet.Format("%d", gTeach.lX4); 
+	WritePrivateProfileString("TEACH", "POS X4", csRet, csFileName);
+
+	csData = m_Y_Pos1.GetCaption();
+	gTeach.lY1 = atol(csData) ;
+	csRet.Format("%d", gTeach.lY1); 
+	WritePrivateProfileString("TEACH", "POS Y1", csRet, csFileName);
+
+	csData = m_Y_Pos2.GetCaption();
+	gTeach.lY2 = atol(csData) ;
+	csRet.Format("%d", gTeach.lY2); 
+	WritePrivateProfileString("TEACH", "POS Y2", csRet, csFileName);
+
+	csData = m_Y_Pos3.GetCaption();
+	gTeach.lY3 = atol(csData) ;
+	csRet.Format("%d", gTeach.lY3); 
+	WritePrivateProfileString("TEACH", "POS Y3", csRet, csFileName);
+
+	csData = m_Y_Pos4.GetCaption();
+	gTeach.lY4 = atol(csData) ;
+	csRet.Format("%d", gTeach.lY4); 
+	WritePrivateProfileString("TEACH", "POS Y4", csRet, csFileName);
+
+	csData = m_Inter_Z.GetCaption();
+	gTeach.lInterZ = atol(csData) ;
+	csRet.Format("%d", gTeach.lInterZ); 
+	WritePrivateProfileString("TEACH", "INTERLOCK Z", csRet, csFileName);
 }
 
 CString CDlg_Motion::CalcCall(CString BeforData)
@@ -459,28 +632,124 @@ CString CDlg_Motion::CalcCall(CString BeforData)
 	return  dlg.m_NewValue ;   
 }
 
-void CDlg_Motion::OnTimer(UINT_PTR nIDEvent)
-{
-	if(nIDEvent == 1)
-	{
-		GetMotionStatus();
-	}
-	if(nIDEvent == 2)
-	{
-		Display();
-	}
-	CDialog::OnTimer(nIDEvent);
-}
-
 BOOL CDlg_Motion::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 	gnJogSpeed = JOGLOW;	
 	SetTimer(1,100,NULL);
-	return TRUE;  // return TRUE unless you set the focus to a control
-	// 예외: OCX 속성 페이지는 FALSE를 반환해야 합니다.
+	DataLoadSetCaption();
+	return TRUE;  
 }
 
+void CDlg_Motion::DataLoadSetCaption()
+{
+	CString csData;
+	char CData[20];
+
+	_ltoa_s(gTeach.lRdyX, CData,10) ;
+	m_Rdy_X.SetCaption(CData);
+
+	_ltoa_s(gTeach.lRdyY, CData,10) ;
+	m_Rdy_Y.SetCaption(CData);
+
+	_ltoa_s(gTeach.lRdyZ, CData,10) ;
+	m_Rdy_Z.SetCaption(CData);
+
+
+	_ltoa_s(gTeach.lUpPos, CData,10) ;
+	m_Pos_Z_UP.SetCaption(CData);
+
+	_ltoa_s(gTeach.lUpPos2, CData,10) ;
+	m_Pos_Z_UP2.SetCaption(CData);
+
+	_ltoa_s(gTeach.lUpPos3, CData,10) ;
+	m_Pos_Z_UP3.SetCaption(CData);
+
+	_ltoa_s(gTeach.lUpPos4, CData,10) ;
+	m_Pos_Z_UP4.SetCaption(CData);
+
+	_ltoa_s(gTeach.lDownPos, CData,10) ;
+	m_Pos_Z_DW.SetCaption(CData);
+
+	_ltoa_s(gTeach.lX1, CData,10) ;
+	m_X_Pos1.SetCaption(CData);
+
+	_ltoa_s(gTeach.lX2, CData,10) ;
+	m_X_Pos2.SetCaption(CData);
+
+	_ltoa_s(gTeach.lX3, CData,10) ;
+	m_X_Pos3.SetCaption(CData);
+
+	_ltoa_s(gTeach.lX4, CData,10) ;
+	m_X_Pos4.SetCaption(CData);
+
+	_ltoa_s(gTeach.lY1, CData,10) ;
+	m_Y_Pos1.SetCaption(CData);
+
+	_ltoa_s(gTeach.lY2, CData,10) ;
+	m_Y_Pos2.SetCaption(CData);
+
+	_ltoa_s(gTeach.lY3, CData,10) ;
+	m_Y_Pos3.SetCaption(CData);
+
+	_ltoa_s(gTeach.lY4, CData,10) ;
+	m_Y_Pos4.SetCaption(CData);
+
+	_ltoa_s(gTeach.lInterZ, CData,10) ;
+	m_Inter_Z.SetCaption(CData);
+
+	_ltoa_s(SpeedFH.lX1, CData,10) ;
+	m_X_Move_Speed.SetCaption(CData);
+
+	_ltoa_s(SpeedAcc.lX1, CData,10) ;
+	m_X_AccDec.SetCaption(CData);
+
+	_ltoa_s(SpeedHome.lX1, CData,10) ;
+	m_X_Home_Speed.SetCaption(CData);
+
+	_ltoa_s(SpeedJog.lX1, CData,10) ;
+	m_X_Jog_Speed.SetCaption(CData);
+
+
+	_ltoa_s(SpeedFH.lY1, CData,10) ;
+	m_Y_Move_Speed.SetCaption(CData);
+
+	_ltoa_s(SpeedAcc.lY1, CData,10) ;
+	m_Y_AccDec.SetCaption(CData);
+
+	_ltoa_s(SpeedHome.lY1, CData,10) ;
+	m_Y_Home_Speed.SetCaption(CData);
+
+	_ltoa_s(SpeedJog.lY1, CData,10) ;
+	m_Y_Jog_Speed.SetCaption(CData);
+
+	_ltoa_s(SpeedFH.lX2, CData,10) ;
+	m_X_Move_Speed2.SetCaption(CData);
+
+	_ltoa_s(SpeedAcc.lX2, CData,10) ;
+	m_X_AccDec2.SetCaption(CData);
+
+	_ltoa_s(SpeedFH.lY2, CData,10) ;
+	m_Y_Move_Speed2.SetCaption(CData);
+
+	_ltoa_s(SpeedAcc.lY2, CData,10) ;
+	m_Y_AccDec2.SetCaption(CData);
+
+	_ltoa_s(SpeedFH.lZ1, CData,10) ;
+	m_Z_FH.SetCaption(CData);
+
+	_ltoa_s(SpeedAcc.lZ1, CData,10) ;
+	m_Z_Acc.SetCaption(CData);
+
+	_ltoa_s(SpeedHome.lZ1, CData,10) ;
+	m_Z_Home_Speed.SetCaption(CData);
+
+	_ltoa_s(SpeedJog.lZ1, CData,10) ;
+	m_Z_Jog_Speed.SetCaption(CData);
+
+	_ltoa_s(gTeach.lInterZ, CData,10) ;
+	m_Inter_Z.SetCaption(CData);
+}
 void CDlg_Motion::PostNcDestroy()
 {
 	// TODO: 여기에 특수화된 코드를 추가 및/또는 기본 클래스를 호출합니다.
@@ -495,62 +764,12 @@ BOOL CDlg_Motion::DestroyWindow()
 	return CDialog::DestroyWindow();
 }
 
-// void CDlg_Motion::DblClickXMovepos()
-// {
-// 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
-// 	CString csData;
-// 	csData = m_X_MovePos.GetCaption();
-// 	csData = CalcCall(csData);
-// 	m_X_MovePos.SetCaption(csData) ;
-// }
-// 
-// void CDlg_Motion::DblClickYMovepos()
-// {
-// 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
-// 	CString csData;
-// 	csData = m_Y_MovePos.GetCaption();
-// 	csData = CalcCall(csData);
-// 	m_Y_MovePos.SetCaption(csData) ;
-// }
-// 
-// void CDlg_Motion::DblClickZMovepos()
-// {
-// 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
-// 	CString csData;
-// 	csData = m_Z_MovePos.GetCaption();
-// 	csData = CalcCall(csData);
-// 	m_Z_MovePos.SetCaption(csData) ;
-// }
 
 void CDlg_Motion::ClickOkBtn()
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
 	DestroyWindow();
 }
-
-// void CDlg_Motion::ClickXMove()
-// {
-// 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
-// 	long lData;
-// 	lData = atol(m_X_MovePos.GetCaption()) ;
-// 	MoveTo(M_X1, lData);
-// }
-// 
-// void CDlg_Motion::ClickYMove()
-// {
-// 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
-// 	long lData;
-// 	lData = atol(m_X_MovePos.GetCaption()) ;
-// 	MoveTo(M_Y1, lData);
-// }
-// 
-// void CDlg_Motion::ClickZMove()
-// {
-// 	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
-// 	long lData;
-// 	lData = atol(m_X_MovePos.GetCaption()) ;
-// 	MoveTo(M_Z1, lData);
-// }
 
 void CDlg_Motion::MouseUpJogRight(short Button, short Shift, long x, long y)
 {
@@ -749,4 +968,694 @@ void CDlg_Motion::DblClickZJogSpeed()
 	sData = m_Z_Jog_Speed.GetCaption();
 	csData = CalcCall(sData);
 	m_Z_Jog_Speed.SetCaption(csData) ;
+}
+void CDlg_Motion::MouseDownJogYUp(short Button, short Shift, long x, long y)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가합니다.
+	if(gnJogSpeed == JOGLOW)
+	{
+		pmiAxSetJogVelProf(0,M_Y1,2, SpeedJog.lY1 , 100);
+	}
+	else if(gnJogSpeed == JOGMID)
+	{
+		pmiAxSetJogVelProf(0,M_Y1,2, SpeedJog.lY1 * 3, 100);
+	}
+	else if(gnJogSpeed == JOGHIGH)
+	{
+		pmiAxSetJogVelProf(0,M_Y1,2, SpeedJog.lY1 * 5, 100);
+	}
+	pmiAxJogMove(0, M_Y1, 0);
+}
+
+void CDlg_Motion::MouseUpJogYUp(short Button, short Shift, long x, long y)
+{
+	pmiAxStop(0, M_Y1);
+	SpeedSetting();
+}
+
+void CDlg_Motion::MouseDownJogLeft(short Button, short Shift, long x, long y)
+{
+	if(gnJogSpeed == JOGLOW)
+	{
+		pmiAxSetJogVelProf(0,M_X1,2, SpeedJog.lX1 , 100);
+	}
+	else if(gnJogSpeed == JOGMID)
+	{
+		pmiAxSetJogVelProf(0,M_X1,2, SpeedJog.lX1 * 3, 100);
+	}
+	else if(gnJogSpeed == JOGHIGH)
+	{
+		pmiAxSetJogVelProf(0,M_X1,2, SpeedJog.lX1 * 5, 100);
+	}
+	pmiAxJogMove(0, M_X1, 1);
+}
+
+void CDlg_Motion::MouseUpJogLeft(short Button, short Shift, long x, long y)
+{
+	pmiAxStop(0, M_X1);
+	SpeedSetting();
+}
+
+void CDlg_Motion::MouseDownJogDown(short Button, short Shift, long x, long y)
+{
+	if(gnJogSpeed == JOGLOW)
+	{
+		pmiAxSetJogVelProf(0,M_Y1,2, SpeedJog.lY1 , 100);
+	}
+	else if(gnJogSpeed == JOGMID)
+	{
+		pmiAxSetJogVelProf(0,M_Y1,2, SpeedJog.lY1 * 3, 100);
+	}
+	else if(gnJogSpeed == JOGHIGH)
+	{
+		pmiAxSetJogVelProf(0,M_Y1,2, SpeedJog.lY1 * 5, 100);
+	}
+	pmiAxJogMove(0, M_Y1, 1);
+}
+
+void CDlg_Motion::MouseUpJogDown(short Button, short Shift, long x, long y)
+{
+	pmiAxStop(0, M_Y1);
+	SpeedSetting();
+}
+
+void CDlg_Motion::MouseDownJogRight(short Button, short Shift, long x, long y)
+{
+	if(gnJogSpeed == JOGLOW)
+	{
+		pmiAxSetJogVelProf(0,M_X1,2, SpeedJog.lX1 , 100);
+	}
+	else if(gnJogSpeed == JOGMID)
+	{
+		pmiAxSetJogVelProf(0,M_X1,2, SpeedJog.lX1 * 3, 100);
+	}
+	else if(gnJogSpeed == JOGHIGH)
+	{
+		pmiAxSetJogVelProf(0,M_X1,2, SpeedJog.lX1 * 5, 100);
+	}
+	pmiAxJogMove(0, M_X1, 0);
+}
+
+void CDlg_Motion::MouseDownJogZUp(short Button, short Shift, long x, long y)
+{
+	if(gnJogSpeed == JOGLOW)
+	{
+		pmiAxSetJogVelProf(0,M_Z1,2, SpeedJog.lZ1 , 100);
+	}
+	else if(gnJogSpeed == JOGMID)
+	{
+		pmiAxSetJogVelProf(0,M_Z1,2, SpeedJog.lZ1 * 3, 100);
+	}
+	else if(gnJogSpeed == JOGHIGH)
+	{
+		pmiAxSetJogVelProf(0,M_Z1,2, SpeedJog.lZ1 * 5, 100);
+	}
+	pmiAxJogMove(0, M_Z1, 1);
+}
+
+void CDlg_Motion::MouseUpJogZUp(short Button, short Shift, long x, long y)
+{
+	pmiAxStop(0, M_Z1);
+	SpeedSetting();
+}
+
+void CDlg_Motion::DblClickRdyX()
+{
+	CString csData;
+	csData = m_Rdy_X.GetCaption();
+	csData = CalcCall(csData);
+	m_Rdy_X.SetCaption(csData) ;
+	DataSave();
+}
+
+void CDlg_Motion::DblClickRdyY()
+{
+	CString csData;
+	csData = m_Rdy_Y.GetCaption();
+	csData = CalcCall(csData);
+	m_Rdy_Y.SetCaption(csData) ;
+	DataSave();
+}
+
+void CDlg_Motion::DblClickRdyZ()
+{
+	CString csData;
+	csData = m_Rdy_Z.GetCaption();
+	csData = CalcCall(csData);
+	m_Rdy_Z.SetCaption(csData) ;
+	DataSave();
+}
+
+void CDlg_Motion::ClickRdyXMove()
+{
+	long lData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_Z1, &dPos);
+	if(dPos > gTeach.lRdyX + 10)
+	{
+		return;
+	}
+
+	lData = atol(m_Rdy_X.GetCaption()) ;
+	MoveTo(M_X1, lData);
+}
+
+void CDlg_Motion::ClickRdyYMove()
+{
+	long lData;
+
+	double dPos;
+
+	pmiAxGetActPos(0,M_Z1, &dPos);
+	if(dPos > gTeach.lRdyY + 10)
+	{
+		return;
+	}
+	lData = atol(m_Rdy_Y.GetCaption()) ;
+	MoveTo(M_Y1, lData);
+}
+
+void CDlg_Motion::ClickRdyZMove()
+{
+	long lData;
+	lData = atol(m_Rdy_Z.GetCaption()) ;
+	MoveTo(M_Z1, lData);
+
+}
+
+void CDlg_Motion::DblClickPosZDw()
+{
+	CString csData;
+	csData = m_Pos_Z_DW.GetCaption();
+	csData = CalcCall(csData);
+	m_Pos_Z_DW.SetCaption(csData) ;
+	DataSave();
+}
+
+void CDlg_Motion::ClickPosZDwMove()
+{
+	long lData;
+	lData = atol(m_Pos_Z_DW.GetCaption()) ;
+	MoveTo(M_Z1, lData);
+}
+
+void CDlg_Motion::ClickRdyXSet()
+{
+	CString csData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_X1, &dPos);
+	csData.Format("%.f", dPos);
+	m_Rdy_X.SetCaption(csData);
+	DataSave();
+}
+
+void CDlg_Motion::ClickRdyYSet()
+{
+	CString csData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_Y1, &dPos);
+	csData.Format("%.f", dPos);
+	m_Rdy_Y.SetCaption(csData);
+	DataSave();
+}
+
+void CDlg_Motion::ClickRdyZSet()
+{
+	CString csData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_Z1, &dPos);
+	csData.Format("%.f", dPos);
+	m_Rdy_Z.SetCaption(csData);
+	DataSave();
+}
+
+void CDlg_Motion::ClickPosZDwSet()
+{
+	CString csData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_Z1, &dPos);
+	csData.Format("%.f", dPos);
+	m_Pos_Z_DW.SetCaption(csData);
+	DataSave();
+}
+
+void CDlg_Motion::DblClickXPos1()
+{
+	CString csData;
+	csData = m_X_Pos1.GetCaption();
+	csData = CalcCall(csData);
+	m_X_Pos1.SetCaption(csData) ;
+	DataSave();
+}
+
+void CDlg_Motion::DblClickYPos1()
+{
+	CString csData;
+	csData = m_Y_Pos1.GetCaption();
+	csData = CalcCall(csData);
+	m_Y_Pos1.SetCaption(csData) ;
+	DataSave();
+}
+
+void CDlg_Motion::DblClickPosZUp()
+{
+	CString csData;
+	csData = m_Pos_Z_UP.GetCaption();
+	csData = CalcCall(csData);
+	m_Pos_Z_UP.SetCaption(csData) ;
+	DataSave();
+}
+
+void CDlg_Motion::DblClickXPos2()
+{
+	CString csData;
+	csData = m_X_Pos2.GetCaption();
+	csData = CalcCall(csData);
+	m_X_Pos2.SetCaption(csData) ;
+	DataSave();
+}
+
+void CDlg_Motion::DblClickYPos2()
+{
+	CString csData;
+	csData = m_Y_Pos2.GetCaption();
+	csData = CalcCall(csData);
+	m_Y_Pos2.SetCaption(csData) ;
+	DataSave();
+}
+
+void CDlg_Motion::DblClickPosZUp2()
+{
+	CString csData;
+	csData = m_Pos_Z_UP2.GetCaption();
+	csData = CalcCall(csData);
+	m_Pos_Z_UP2.SetCaption(csData) ;
+	DataSave();
+}
+
+void CDlg_Motion::DblClickXPos3()
+{
+	CString csData;
+	csData = m_X_Pos3.GetCaption();
+	csData = CalcCall(csData);
+	m_X_Pos3.SetCaption(csData) ;
+	DataSave();
+}
+
+void CDlg_Motion::DblClickYPos3()
+{
+	CString csData;
+	csData = m_Y_Pos3.GetCaption();
+	csData = CalcCall(csData);
+	m_Y_Pos3.SetCaption(csData) ;
+	DataSave();
+}
+
+void CDlg_Motion::DblClickPosZUp3()
+{
+	CString csData;
+	csData = m_Pos_Z_UP3.GetCaption();
+	csData = CalcCall(csData);
+	m_Pos_Z_UP3.SetCaption(csData) ;
+	DataSave();
+}
+
+void CDlg_Motion::DblClickXPos4()
+{
+	CString csData;
+	csData = m_X_Pos4.GetCaption();
+	csData = CalcCall(csData);
+	m_X_Pos4.SetCaption(csData) ;
+	DataSave();
+}
+
+void CDlg_Motion::DblClickYPos4()
+{
+	CString csData;
+	csData = m_Y_Pos4.GetCaption();
+	csData = CalcCall(csData);
+	m_Y_Pos4.SetCaption(csData) ;
+	DataSave();
+}
+
+void CDlg_Motion::DblClickPosZUp4()
+{
+	CString csData;
+	csData = m_Pos_Z_UP4.GetCaption();
+	csData = CalcCall(csData);
+	m_Pos_Z_UP4.SetCaption(csData) ;
+	DataSave();
+}
+
+void CDlg_Motion::DblClickInterZ()
+{
+	CString csData;
+	csData = m_Inter_Z.GetCaption();
+	csData = CalcCall(csData);
+	m_Inter_Z.SetCaption(csData) ;
+	DataSave();
+}
+
+void CDlg_Motion::ClickXPos1Move()
+{
+	long lData;
+
+	double dPos;
+
+	pmiAxGetActPos(0,M_Z1, &dPos);
+	if(dPos > gTeach.lDownPos + 10)
+	{
+		return;
+	}
+
+	lData = atol(m_X_Pos1.GetCaption()) ;
+	MoveTo(M_X1, lData);
+}
+
+void CDlg_Motion::ClickYPos1Move()
+{
+	long lData;
+
+	double dPos;
+
+	pmiAxGetActPos(0,M_Z1, &dPos);
+	if(dPos > gTeach.lDownPos + 10)
+	{
+		return;
+	}
+	lData = atol(m_Y_Pos1.GetCaption()) ;
+	MoveTo(M_Y1, lData);
+}
+
+void CDlg_Motion::ClickPosZMove()
+{
+	long lData;
+	lData = atol(m_Pos_Z_UP.GetCaption()) ;
+	MoveTo(M_Z1, lData);
+}
+
+void CDlg_Motion::ClickXPos2Move()
+{
+	long lData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_Z1, &dPos);
+	if(dPos > gTeach.lDownPos + 10)
+	{
+		return;
+	}
+	lData = atol(m_X_Pos2.GetCaption()) ;
+	MoveTo(M_X1, lData);
+}
+
+void CDlg_Motion::ClickYPos2Move()
+{
+	long lData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_Z1, &dPos);
+	if(dPos > gTeach.lDownPos + 10)
+	{
+		return;
+	}
+	lData = atol(m_Y_Pos2.GetCaption()) ;
+	MoveTo(M_Y1, lData);
+}
+
+void CDlg_Motion::ClickPosZMove2()
+{
+	long lData;
+	lData = atol(m_Pos_Z_UP2.GetCaption()) ;
+	MoveTo(M_Z1, lData);
+}
+
+void CDlg_Motion::ClickXPos3Move()
+{
+	long lData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_Z1, &dPos);
+	if(dPos > gTeach.lDownPos + 10)
+	{
+		return;
+	}
+	lData = atol(m_X_Pos3.GetCaption()) ;
+	MoveTo(M_X1, lData);
+}
+
+void CDlg_Motion::ClickYPos3Move()
+{
+	long lData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_Z1, &dPos);
+	if(dPos > gTeach.lDownPos + 10)
+	{
+		return;
+	}
+	lData = atol(m_Y_Pos3.GetCaption()) ;
+	MoveTo(M_Y1, lData);
+}
+
+void CDlg_Motion::ClickPosZMove3()
+{
+	long lData;
+	lData = atol(m_Pos_Z_UP3.GetCaption()) ;
+	MoveTo(M_Z1, lData);
+}
+
+void CDlg_Motion::ClickXPos4Move()
+{
+	long lData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_Z1, &dPos);
+	if(dPos > gTeach.lDownPos + 10)
+	{
+		return;
+	}
+	lData = atol(m_X_Pos4.GetCaption()) ;
+	MoveTo(M_X1, lData);
+}
+
+void CDlg_Motion::ClickYPos4Move()
+{
+	long lData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_Z1, &dPos);
+	if(dPos > gTeach.lDownPos + 10)
+	{
+		return;
+	}
+	lData = atol(m_Y_Pos4.GetCaption()) ;
+	MoveTo(M_Y1, lData);
+}
+
+void CDlg_Motion::ClickPosZMove4()
+{
+	long lData;
+	lData = atol(m_Pos_Z_UP4.GetCaption()) ;
+	MoveTo(M_Z1, lData);
+}
+
+void CDlg_Motion::ClickPosZDwMove2()
+{
+	long lData;
+	lData = atol(m_Inter_Z.GetCaption()) ;
+
+	MoveTo(M_Z1, lData);
+}
+
+void CDlg_Motion::ClickXPos1Set()
+{
+	CString csData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_X1, &dPos);
+	csData.Format("%.f", dPos);
+	m_X_Pos1.SetCaption(csData);
+	DataSave();
+}
+
+void CDlg_Motion::ClickYPos1Set()
+{
+	CString csData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_Y1, &dPos);
+	csData.Format("%.f", dPos);
+	m_Y_Pos1.SetCaption(csData);
+	DataSave();
+}
+
+void CDlg_Motion::ClickPosZUpSet()
+{
+	CString csData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_Z1, &dPos);
+	csData.Format("%.f", dPos);
+	m_Pos_Z_UP.SetCaption(csData);
+	DataSave();
+}
+
+void CDlg_Motion::ClickXPos2Set()
+{
+	CString csData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_X1, &dPos);
+	csData.Format("%.f", dPos);
+	m_X_Pos2.SetCaption(csData);
+	DataSave();
+}
+
+void CDlg_Motion::ClickYPos2Set()
+{
+	CString csData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_Y1, &dPos);
+	csData.Format("%.f", dPos);
+	m_Y_Pos2.SetCaption(csData);
+	DataSave();
+}
+
+void CDlg_Motion::ClickPosZUpSet2()
+{
+	CString csData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_Z1, &dPos);
+	csData.Format("%.f", dPos);
+	m_Pos_Z_UP2.SetCaption(csData);
+	DataSave();
+}
+
+void CDlg_Motion::ClickXPos3Set()
+{
+	CString csData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_X1, &dPos);
+	csData.Format("%.f", dPos);
+	m_X_Pos3.SetCaption(csData);
+	DataSave();
+}
+
+void CDlg_Motion::ClickYPos3Set()
+{
+	CString csData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_Y1, &dPos);
+	csData.Format("%.f", dPos);
+	m_Y_Pos3.SetCaption(csData);
+	DataSave();
+}
+
+void CDlg_Motion::ClickPosZUpSet3()
+{
+	CString csData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_Z1, &dPos);
+	csData.Format("%.f", dPos);
+	m_Pos_Z_UP3.SetCaption(csData);
+	DataSave();
+}
+
+void CDlg_Motion::ClickXPos4Set()
+{
+	CString csData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_X1, &dPos);
+	csData.Format("%.f", dPos);
+	m_X_Pos4.SetCaption(csData);
+	DataSave();
+}
+
+void CDlg_Motion::ClickYPos4Set()
+{
+	CString csData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_Y1, &dPos);
+	csData.Format("%.f", dPos);
+	m_Y_Pos4.SetCaption(csData);
+	DataSave();
+}
+
+void CDlg_Motion::ClickPosZUpSet4()
+{
+	CString csData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_Z1, &dPos);
+	csData.Format("%.f", dPos);
+	m_Pos_Z_UP4.SetCaption(csData);
+	DataSave();
+}
+
+void CDlg_Motion::ClickPosZDwSet2()
+{
+	CString csData;
+	double dPos;
+
+	pmiAxGetActPos(0,M_Z1, &dPos);
+	csData.Format("%.f", dPos);
+	m_Inter_Z.SetCaption(csData);
+	DataSave();
+}
+
+void CDlg_Motion::DblClickXMovepos()
+{
+	CString csData;
+	csData = m_X_MovePos.GetCaption();
+	csData = CalcCall(csData);
+	m_X_MovePos.SetCaption(csData) ;
+}
+
+void CDlg_Motion::DblClickYMovepos()
+{
+	CString csData;
+	csData = m_Y_MovePos.GetCaption();
+	csData = CalcCall(csData);
+	m_Y_MovePos.SetCaption(csData) ;
+}
+
+void CDlg_Motion::DblClickZMovepos()
+{
+	CString csData;
+	csData = m_Z_MovePos.GetCaption();
+	csData = CalcCall(csData);
+	m_Z_MovePos.SetCaption(csData) ;
+}
+
+void CDlg_Motion::ClickXMove()
+{
+	long lData;
+	lData = atol(m_X_MovePos.GetCaption()) ;
+	MoveTo(M_X1, lData);
+}
+
+void CDlg_Motion::ClickYMove()
+{
+	long lData;
+	lData = atol(m_Y_MovePos.GetCaption()) ;
+	MoveTo(M_Y1, lData);
+}
+
+void CDlg_Motion::ClickZMove()
+{
+	long lData;
+	lData = atol(m_Z_MovePos.GetCaption()) ;
+	MoveTo(M_Z1, lData);
 }
